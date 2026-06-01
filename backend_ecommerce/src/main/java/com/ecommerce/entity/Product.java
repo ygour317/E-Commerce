@@ -1,26 +1,20 @@
 package com.ecommerce.entity;
 
-import com.ecommerce.entity.enums.Role;
+import com.ecommerce.entity.enums.ProductCategory;
 import jakarta.persistence.*;
-import lombok.*;
+        import lombok.*;
 
+        import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(
-        name = "customers",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        columnNames = "email"
-                )
-        }
-)
+@Table(name = "products")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Customer {
+public class Product {
 
     @Id
     @GeneratedValue(
@@ -31,22 +25,24 @@ public class Customer {
 
     @Column(
             nullable = false,
-            length = 50
+            length = 100
     )
     private String name;
 
-    @Column(
-            nullable = false,
-            unique = true
-    )
-    private String email;
+    @Column(length = 1000)
+    private String description;
 
     @Column(nullable = false)
-    private String password;
+    private BigDecimal price;
+
+    private String imageUrl;
+
+    @Column(nullable = false)
+    private Integer stockQuantity;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private ProductCategory category;
 
     @Column(nullable = false)
     private Boolean active = true;
@@ -65,10 +61,6 @@ public class Customer {
 
         updatedAt =
                 LocalDateTime.now();
-
-        if (role == null) {
-            role = Role.CUSTOMER;
-        }
 
         if (active == null) {
             active = true;

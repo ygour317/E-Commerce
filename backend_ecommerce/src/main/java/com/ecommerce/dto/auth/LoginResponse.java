@@ -1,5 +1,6 @@
-package com.ecommerce.dto.response;
+package com.ecommerce.dto.auth;
 
+import com.ecommerce.entity.enums.Role;
 import lombok.*;
 
 @Getter
@@ -7,11 +8,15 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RegisterCustomerResponse {
+public class LoginResponse {
+
+    private Long customerId;
+
+    private String name;
+
+    private String email;
+
+    private Role role;
 
     private String message;
-    private Long customerId;
-    private String name;
-    private String email;
-    private String role;
 }

@@ -1,7 +1,10 @@
 package com.ecommerce.controller;
 
-import com.ecommerce.dto.request.RegisterCustomerRequest;
-import com.ecommerce.dto.response.RegisterCustomerResponse;
+import com.ecommerce.dto.auth.LoginRequest;
+import com.ecommerce.dto.auth.LoginResponse;
+
+import com.ecommerce.dto.customer.RegisterCustomerRequest;
+import com.ecommerce.dto.customer.RegisterCustomerResponse;
 import com.ecommerce.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +34,20 @@ public class CustomerController {
         return new ResponseEntity<>(
                 response,
                 HttpStatus.CREATED
+        );
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(
+            @Valid
+            @RequestBody
+            LoginRequest request
+    ) {
+
+        return ResponseEntity.ok(
+                customerService.login(
+                        request
+                )
         );
     }
 }
