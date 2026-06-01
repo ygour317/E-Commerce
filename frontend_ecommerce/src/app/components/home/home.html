@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+
+<div class="home-container">
+
+  <h2>
+    Products
+  </h2>
+
+  <div class="products-grid">
+
+    @for (
+      product of products;
+      track product.id
+    ) {
+
+    <div class="product-card">
+
+      <div class="image-box">
+
+        @if(product.imageUrl){
+
+        <img
+          [src]="product.imageUrl"
+          alt="product"
+        >
+
+        } @else {
+
+        <div
+          class="fallback-image"
+        >
+          {{
+          product.name[0]
+          }}
+        </div>
+
+        }
+
+      </div>
+
+      <h3>
+        {{ product.name }}
+      </h3>
+
+      <p class="price">
+
+        ₹ {{ product.price }}
+
+      </p>
+
+      @if( getQuantity(product.id) === 0){
+
+        <button class="add-btn" (click)=" addToCart(product.id)">
+          Add To Cart
+        </button>
+      } @else {
+
+      <div class="quantity-box">
+        <button (click)="decrease(product.id)">
+          -
+        </button>
+
+        <span>
+
+          {{
+          getQuantity(
+            product.id
+          )
+          }}
+
+        </span>
+
+        <button
+          (click)="
+            increase(
+              product.id
+            )
+          "
+        >
+          +
+        </button>
+
+      </div>
+
+      }
+
+    </div>
+
+    }
+
+  </div>
+
+</div>

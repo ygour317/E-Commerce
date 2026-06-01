@@ -1,0 +1,40 @@
+.register-container {
+  width: 400px;
+  margin: 50px auto;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  cursor: pointer;
+}
+
+small {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}

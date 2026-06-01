@@ -1,0 +1,51 @@
+<nav class="navbar">
+
+  <div
+    class="logo"
+    routerLink="/"
+  >
+    E-Commerce
+  </div>
+
+  <div class="search-box">
+
+    <input
+      type="text"
+      placeholder="Search products..."
+      disabled
+    >
+
+  </div>
+
+  <div class="actions">
+
+    <button>
+
+      Cart
+      (
+      {{cartCount}}
+      )
+
+    </button>
+
+    @if(isLoggedIn()) {
+
+    <button
+      (click)="logout()"
+    >
+      Logout
+    </button>
+
+    } @else {
+
+    <button
+      routerLink="/login"
+    >
+      Login
+    </button>
+
+    }
+
+  </div>
+
+</nav>

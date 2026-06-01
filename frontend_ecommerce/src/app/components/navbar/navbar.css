@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  background: #1976d2;
+  color: white;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-box input {
+  width: 300px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

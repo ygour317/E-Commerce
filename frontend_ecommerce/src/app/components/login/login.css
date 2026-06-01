@@ -1,0 +1,20 @@
+.login-container {
+  width: 350px;
+  margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  padding: 12px;
+}
+
+button {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}
