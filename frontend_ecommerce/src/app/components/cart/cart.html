@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+
+<div class="cart-page">
+
+  <h2>
+    Your Cart
+  </h2>
+
+  @if(
+    cartItems.length === 0
+  ) {
+
+  <h3>
+    Cart is Empty
+  </h3>
+
+  } @else {
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>
+          Product
+        </th>
+
+        <th>
+          Price
+        </th>
+
+        <th>
+          Quantity
+        </th>
+
+        <th>
+          Subtotal
+        </th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      @for(
+        item of cartItems;
+        track item.productId
+      ) {
+
+      <tr>
+
+        <td>
+
+          {{
+          item.productName
+          }}
+
+        </td>
+
+        <td>
+
+          ₹{{item.price}}
+
+        </td>
+
+        <td>
+
+          <button
+            class="qty-btn"
+            (click)="decrease(item.productId)"
+          >
+            -
+          </button>
+
+          <span
+            class="qty-value"
+          >
+            {{item.quantity}}
+          </span>
+
+          <button
+            class="qty-btn"
+            (click)="increase(item.productId)"
+          >
+            +
+          </button>
+
+        </td>
+
+        <td>
+
+          ₹{{
+            getSubtotal(item)
+          }}
+
+        </td>
+
+      </tr>
+
+      }
+
+    </tbody>
+
+  </table>
+
+  <div
+    class="grand-total"
+  >
+
+    Grand Total :
+
+    ₹{{totalAmount}}
+
+  </div>
+
+  }
+
+</div>

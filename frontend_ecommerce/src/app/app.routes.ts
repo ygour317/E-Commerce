@@ -1,14 +1,13 @@
 import { Routes } from '@angular/router';
 
 // import { RegisterComponent}
-import { Register }
-from './components/register/register';
+import { Register } from './components/register/register';
 
-import { Login }
-from './components/login/login';
+import { Login } from './components/login/login';
 
-import { Home }
-from './components/home/home';
+import { Home } from './components/home/home';
+
+import { Cart} from './components/cart/cart';
 
 export const routes:
 Routes = [
@@ -26,6 +25,11 @@ Routes = [
   {
     path: 'login',
     component: Login
+  },
+
+  {
+    path: 'cart',
+    component: Cart
   },
 
   {

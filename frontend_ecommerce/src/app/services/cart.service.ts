@@ -98,28 +98,51 @@ export class CartService {
     );
   }
 
-  addGuestCart(productId: number): void {
+  addGuestCart(
+  product: any
+): void {
 
-    // console.log('added', productId);
-    const cart = this.getGuestCart();
+  const cart =
+    this.getGuestCart();
 
-    const existing = cart.find( x => x.productId === productId);
+  const existing =
+    cart.find(
+      x =>
+        x.productId ===
+        product.productId
+    );
 
-    if (existing) {
-        existing.quantity++;
+  if (existing) {
 
-    } else {
+    existing.quantity++;
 
-      cart.push({
-        productId,
-        quantity: 1
-      });
-    }
+  } else {
 
-    localStorage.setItem( this.storageKey, JSON.stringify(cart) );
+    cart.push({
 
-    this.updateCartCount();
+      productId:
+        product.id,
+
+      productName:
+        product.name,
+
+      imageUrl:
+        product.imageUrl,
+
+      price:
+        product.price,
+
+      quantity: 1
+    });
   }
+
+  localStorage.setItem(
+    this.storageKey,
+    JSON.stringify(cart)
+  );
+
+  this.updateCartCount();
+}
 
 
   increaseGuest(

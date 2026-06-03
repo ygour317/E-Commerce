@@ -130,9 +130,7 @@ implements OnInit {
     );
 }
 
-  addToCart(
-    productId: number
-  ): void {
+  addToCart( product: any ): void {
 
     const user =
   JSON.parse(
@@ -143,10 +141,13 @@ implements OnInit {
 
     if (user){
 
+      // console.log('Product:', product);
+      // console.log('Customer:', user.customerId);
+
       this.cartService
         .addToCart(
           user.customerId,
-          productId
+          product.id
         )
         .subscribe({
 
@@ -164,10 +165,7 @@ implements OnInit {
       return;
     }
 
-    this.cartService
-      .addGuestCart(
-        productId
-      );
+    this.cartService.addGuestCart(product);
   }
 
   increase(
