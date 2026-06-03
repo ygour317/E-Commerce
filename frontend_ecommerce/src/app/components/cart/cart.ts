@@ -4,6 +4,8 @@ import {
   OnInit
 } from '@angular/core';
 
+import { RouterLink} from '@angular/router';
+
 import {
   CommonModule
 } from '@angular/common';
@@ -19,10 +21,7 @@ import {
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [
-    CommonModule,
-    Navbar
-  ],
+  imports: [CommonModule, Navbar,RouterLink],
   templateUrl: './cart.html',
   styleUrl: './cart.css'
 })
@@ -185,8 +184,7 @@ implements OnInit {
     );
   }
 
-  private calculateGuestTotal():
-  void {
+  private calculateGuestTotal(): void {
 
     this.totalAmount =
       this.cartItems.reduce(
@@ -205,4 +203,18 @@ implements OnInit {
         0
       );
   }
+
+  removeItem( productId: number, quantity: number): void {
+
+    for ( let i = 0; i < quantity; i++) {
+
+      this.decrease(productId); 
+    }
+ }
+
+ getInitial(name: string): string {
+
+    return name ? name[0].toUpperCase() : '?';
+ }
+
 }
