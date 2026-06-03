@@ -204,13 +204,70 @@ implements OnInit {
       );
   }
 
-  removeItem( productId: number, quantity: number): void {
+//   removeItem( productId: number, quantity: number): void {
 
-    for ( let i = 0; i < quantity; i++) {
+//     for ( let i = 0; i < quantity; i++) {
 
-      this.decrease(productId); 
+//       this.decrease(productId); 
+//     }
+//  }
+
+  removeItem(
+    productId: number
+  ): void {
+
+    const user =
+      JSON.parse(
+        localStorage.getItem(
+          'loggedInUser'
+        ) || 'null'
+      );
+
+    if (!user) {
+
+      const item =
+        this.cartItems.find(
+          x =>
+            x.productId ===
+            productId
+        );
+
+      if (!item) {
+        return;
+      }
+
+      for (
+        let i = 0;
+        i < item.quantity;
+        i++
+      ) {
+
+        this.decrease(
+          productId
+        );
+      }
+
+      return;
     }
- }
+
+    this.cartService
+        .removeItem(
+          user.customerId,
+          productId
+        )
+        .subscribe({
+
+          next: () => {
+
+            this.loadCart();
+
+            this.cartService
+                .updateCartCount(
+                  user.customerId
+                );
+          }
+        });
+  }
 
  getInitial(name: string): string {
 

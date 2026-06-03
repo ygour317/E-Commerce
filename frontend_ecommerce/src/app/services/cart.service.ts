@@ -395,4 +395,24 @@ mergeGuestCart(
   );
 }
 
+removeItem(
+  customerId: number,
+  productId: number
+) {
+
+  return this.http.delete(
+
+    `${this.baseUrl}/remove`,
+
+    {
+      params: {
+
+        customerId,
+
+        productId
+      }
+    }
+  );
+}
+
 }

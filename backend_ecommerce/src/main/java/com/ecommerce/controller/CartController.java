@@ -4,6 +4,7 @@ import com.ecommerce.dto.cart.*;
 import com.ecommerce.service.CartService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -60,4 +61,22 @@ public class CartController {
         return cartService
                 .getCart(customerId);
     }
+
+    @DeleteMapping("/remove")
+    public ResponseEntity<Void> removeItem(
+
+            @RequestParam Long customerId,
+
+            @RequestParam Long productId
+    ) {
+
+        cartService.removeItem(
+                customerId,
+                productId
+        );
+
+        return ResponseEntity.ok()
+                .build();
+    }
+
 }

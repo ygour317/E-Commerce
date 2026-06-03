@@ -4,6 +4,7 @@ import com.ecommerce.dto.cart.*;
 import com.ecommerce.entity.*;
 import com.ecommerce.repository.*;
 import com.ecommerce.service.CartService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CartServiceImpl
-        implements CartService {
+public class CartServiceImpl implements CartService {
 
     private final CartRepository
             cartRepository;
@@ -158,6 +158,19 @@ public class CartServiceImpl
         return buildCartResponse(cart);
     }
 
+    @Override
+    @Transactional
+    public void removeItem(
+            Long customerId,
+            Long productId
+    ) {
+
+        cartItemRepository
+                .deleteByCartCustomer_IdAndProduct_Id(
+                        customerId,
+                        productId
+                );
+    }
     private Cart getOrCreateCart(
             Long customerId
     ) {

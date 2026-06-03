@@ -19,4 +19,10 @@ public interface CartService {
     CartResponse getCart(
             Long customerId
     );
+
+    void removeItem(
+            Long customerId,
+            Long productId
+    );
+
 }
