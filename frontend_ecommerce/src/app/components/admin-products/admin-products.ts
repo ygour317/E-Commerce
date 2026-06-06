@@ -86,6 +86,21 @@ implements OnInit {
       });
   }
 
+  reactivateProduct(
+  id: number
+): void {
+
+  this.productService
+      .reactivateProduct(id)
+      .subscribe({
+
+        next: () => {
+
+          this.loadProducts();
+        }
+      });
+  }
+
   openAddForm(): void {
 
   this.showForm = true;

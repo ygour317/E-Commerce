@@ -158,6 +158,32 @@ public class ProductServiceImpl
     }
 
     @Override
+    public void reactivateProduct(
+            Long productId
+    ) {
+
+        Product product =
+                productRepository
+                        .findById(
+                                productId
+                        )
+                        .orElseThrow(
+                                () ->
+                                        new RuntimeException(
+                                                "Product not found"
+                                        )
+                        );
+
+        product.setActive(
+                true
+        );
+
+        productRepository.save(
+                product
+        );
+    }
+
+    @Override
     public List<ProductResponse> getAllProductsForAdmin() {
 
         return productRepository

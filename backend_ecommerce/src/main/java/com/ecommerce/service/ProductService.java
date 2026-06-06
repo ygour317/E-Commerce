@@ -22,5 +22,9 @@ public interface ProductService {
             Long productId
     );
 
+    void reactivateProduct(
+            Long productId
+    );
+
     List<ProductResponse> getAllProductsForAdmin();
 }

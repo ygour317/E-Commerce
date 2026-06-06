@@ -5,6 +5,7 @@ import com.ecommerce.dto.product.ProductResponse;
 import com.ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +40,13 @@ public class AdminProductController {
     public void deleteProduct( @PathVariable Long id) {
 
         productService.deleteProduct(id);
+    }
+
+    @PutMapping("/{id}/reactivate")
+    public ResponseEntity<Void> reactivateProduct(@PathVariable Long id) {
+
+        productService.reactivateProduct(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping

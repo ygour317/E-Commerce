@@ -65,4 +65,15 @@ export class ProductService {
   );
   }
 
+  reactivateProduct(
+  id: number
+): Observable<any> {
+
+  return this.http.put(
+
+    `${this.adminUrl}/${id}/reactivate`,
+
+    {}
+  );
+  }
 }   

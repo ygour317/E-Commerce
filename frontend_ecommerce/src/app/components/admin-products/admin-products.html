@@ -172,28 +172,27 @@
         </td>
 
         <td>
-
-            <button
-                class="edit-btn"
-                (click)="
-                    editProduct(
-                    product
-                    )
-                "
-                >
+    
+        @if(product.active){
+            
+            <button class="edit-btn" (click)="editProduct(product)" >
                 Edit
             </button>
-
-            <button
-                class="delete-btn"
-                (click)="
-                    deleteProduct(
-                    product.id
-                    )
-                "
-                >
+            
+            <button class="delete-btn" (click)="deleteProduct(product.id)" >
                 Delete
             </button>
+        } 
+        @else {
+            
+            <button class="edit-btn" (click)="editProduct(product)" >
+                Edit
+            </button>
+            
+            <button class="edit-btn" (click)="reactivateProduct(product.id)" >
+                Reactivate
+            </button>
+        }
 
         </td>
 
