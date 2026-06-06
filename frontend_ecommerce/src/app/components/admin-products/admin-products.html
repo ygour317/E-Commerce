@@ -1,0 +1,208 @@
+<div class="admin-container">
+
+  <div class="header">
+
+    <h2>
+      Product Management
+    </h2>
+
+    <button
+        class="add-btn"
+        (click)="openAddForm()"
+        >
+        + Add Product
+    </button>
+
+  </div>
+
+  @if(showForm){
+
+    <div class="form-container">
+
+        <h3>
+
+            {{
+                isEditMode
+                ? 'Edit Product'
+                : 'Add Product'
+            }}
+
+        </h3>
+
+        <input
+            type="text"
+            placeholder="Name"
+            [(ngModel)]="productForm.name"
+        >
+
+        <input
+            type="text"
+            placeholder="Description"
+            [(ngModel)]="productForm.description"
+        >
+
+        <input
+            type="number"
+            placeholder="Price"
+            [(ngModel)]="productForm.price"
+        >
+
+        <input
+            type="text"
+            placeholder="Image URL"
+            [(ngModel)]="productForm.imageUrl"
+        >
+
+        <input
+            type="number"
+            placeholder="Stock"
+            [(ngModel)]="productForm.stockQuantity"
+        >
+
+        <select
+            [(ngModel)]="productForm.category"
+        >
+
+            <option value="">
+            Select Category
+            </option>
+
+            <option value="ELECTRONICS">
+            ELECTRONICS
+            </option>
+
+            <option value="FASHION">
+            FASHION
+            </option>
+
+            <option value="BOOKS">
+            BOOKS
+            </option>
+
+            <option value="HOME">
+            HOME
+            </option>
+
+        </select>
+
+        <button (click)="saveProduct()">
+            {{
+                isEditMode
+                    ? 'Update Product'
+                    : 'Save Product'
+            }}
+        </button>
+
+    </div>
+  }
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>ID</th>
+
+        <th>Name</th>
+
+        <th>Category</th>
+
+        <th>Price</th>
+
+        <th>Stock</th>
+
+        <th>Status</th>
+
+        <th>Actions</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      @for (
+        product of products;
+        track product.id
+      ) {
+
+      <tr>
+
+        <td>
+          {{ product.id }}
+        </td>
+
+        <td>
+          {{ product.name }}
+        </td>
+
+        <td>
+          {{ product.category }}
+        </td>
+
+        <td>
+          ₹ {{ product.price }}
+        </td>
+
+        <td>
+          {{ product.stockQuantity }}
+        </td>
+
+        <td>
+
+          @if(product.active){
+
+            <span
+              class="active"
+            >
+              ACTIVE
+            </span>
+
+          } @else {
+
+            <span
+              class="inactive"
+            >
+              INACTIVE
+            </span>
+
+          }
+
+        </td>
+
+        <td>
+
+            <button
+                class="edit-btn"
+                (click)="
+                    editProduct(
+                    product
+                    )
+                "
+                >
+                Edit
+            </button>
+
+            <button
+                class="delete-btn"
+                (click)="
+                    deleteProduct(
+                    product.id
+                    )
+                "
+                >
+                Delete
+            </button>
+
+        </td>
+
+      </tr>
+
+      }
+
+    </tbody>
+
+  </table>
+
+</div>

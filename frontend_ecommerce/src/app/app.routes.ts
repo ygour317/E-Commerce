@@ -8,6 +8,7 @@ import { Login } from './components/login/login';
 import { Home } from './components/home/home';
 
 import { Cart} from './components/cart/cart';
+import { AdminProducts } from './components/admin-products/admin-products';
 
 export const routes:
 Routes = [
@@ -16,6 +17,10 @@ Routes = [
     path: '',
     component: Home
   },
+  {
+    path: 'admin/products',
+    component: AdminProducts
+},
 
   {
     path: 'register',
