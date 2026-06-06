@@ -10,9 +10,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductResponse {
-
-    private Long id;
+public class ProductRequest {
 
     private String name;
 
@@ -25,6 +23,4 @@ public class ProductResponse {
     private Integer stockQuantity;
 
     private ProductCategory category;
-
-    private Boolean active;
 }

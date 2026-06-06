@@ -7,6 +7,8 @@ import com.ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import com.ecommerce.dto.product.ProductRequest;
+
 import java.util.List;
 
 @Service
@@ -27,6 +29,143 @@ public class ProductServiceImpl
 
         return products.stream()
                 .map(this::mapToResponse)
+                .toList();
+    }
+
+    @Override
+    public ProductResponse addProduct(
+            ProductRequest request
+    ) {
+
+        Product product =
+                Product.builder()
+
+                        .name(
+                                request.getName()
+                        )
+
+                        .description(
+                                request.getDescription()
+                        )
+
+                        .price(
+                                request.getPrice()
+                        )
+
+                        .imageUrl(
+                                request.getImageUrl()
+                        )
+
+                        .stockQuantity(
+                                request.getStockQuantity()
+                        )
+
+                        .category(
+                                request.getCategory()
+                        )
+
+                        .active(true)
+
+                        .build();
+
+        Product savedProduct =
+                productRepository
+                        .save(product);
+
+        return mapToResponse(
+                savedProduct
+        );
+    }
+
+    @Override
+    public ProductResponse updateProduct(
+
+            Long productId,
+
+            ProductRequest request
+    ) {
+
+        Product product =
+                productRepository
+                        .findById(
+                                productId
+                        )
+                        .orElseThrow(
+                                () ->
+                                        new RuntimeException(
+                                                "Product not found"
+                                        )
+                        );
+
+        product.setName(
+                request.getName()
+        );
+
+        product.setDescription(
+                request.getDescription()
+        );
+
+        product.setPrice(
+                request.getPrice()
+        );
+
+        product.setImageUrl(
+                request.getImageUrl()
+        );
+
+        product.setStockQuantity(
+                request.getStockQuantity()
+        );
+
+        product.setCategory(
+                request.getCategory()
+        );
+
+        Product updatedProduct =
+                productRepository
+                        .save(product);
+
+        return mapToResponse(
+                updatedProduct
+        );
+    }
+
+    @Override
+    public void deleteProduct(
+            Long productId
+    ) {
+
+        Product product =
+                productRepository
+                        .findById(
+                                productId
+                        )
+                        .orElseThrow(
+                                () ->
+                                        new RuntimeException(
+                                                "Product not found"
+                                        )
+                        );
+
+        product.setActive(
+                false
+        );
+
+        productRepository
+                .save(
+                        product
+                );
+    }
+
+    @Override
+    public List<ProductResponse> getAllProductsForAdmin() {
+
+        return productRepository
+                .findAll()
+                .stream()
+                .map(
+                        this::mapToResponse
+                )
                 .toList();
     }
 
@@ -51,6 +190,9 @@ public class ProductServiceImpl
                 )
                 .category(
                         product.getCategory()
+                )
+                .active(
+                        product.getActive()
                 )
                 .build();
     }
